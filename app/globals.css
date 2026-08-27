@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-ink: #1c1b1a;
+  --color-ink-2: #161514;
+  --color-accent: #ec3013;
+  --color-accent-700: #ae1800;
+  --color-highlight: #ff563c;
+  --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-accent: var(--color-accent);
+  --color-accent-700: var(--color-accent-700);
+  --color-highlight: var(--color-highlight);
+  --color-divider: var(--color-divider);
+  --font-heading: var(--font-archivo), system-ui, sans-serif;
+  --font-body: var(--font-archivo), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  text-wrap: pretty;
+}
+
+@layer base {
+  a {
+    color: var(--color-accent-700);
+    text-underline-offset: 3px;
+  }
+  a:hover {
+    color: var(--color-accent);
+  }
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(243, 242, 242, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 242, 242, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.tag-outline {
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Scroll-triggered reveal, toggled by the Reveal component's IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.step-marker {
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, opacity 0.25s ease 0.15s;
+}
+.reveal-visible .step-marker {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-fade-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+  .step-marker {
+    transform: scale(1);
+    opacity: 1;
+    transition: none;
+  }
 }
