@@ -11,23 +11,23 @@ const deploySteps = [
 
 export default function Hero() {
   return (
-    <section className="mx-auto grid max-w-[1240px] grid-cols-[repeat(auto-fit,minmax(340px,1fr))] items-center gap-x-14 gap-y-10 px-5 py-14 sm:px-9 md:py-20 lg:px-[72px] lg:py-24">
+    <section className="mx-auto grid max-w-[1240px] grid-cols-1 items-center gap-x-14 gap-y-10 px-5 py-14 sm:px-9 md:py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:px-[72px] lg:py-24">
+      <h1 className="m-0 -ml-[0.058em] font-heading text-[40px] font-extrabold leading-[1.04] tracking-[-0.025em] text-[#f3f2f2] sm:text-[56px] lg:col-span-2 lg:text-[clamp(64px,6.6vw,84px)]">
+        <span className="animate-fade-up block [animation-delay:40ms]">
+          We build your product.
+        </span>
+        <span className="animate-fade-up block [animation-delay:140ms]">
+          Idea to launch.
+        </span>
+        <span className="animate-fade-up block text-highlight [animation-delay:240ms]">
+          Nothing off a shelf.
+        </span>
+      </h1>
       <div>
-        <h1 className="m-0 -ml-[0.058em] font-heading text-[40px] font-extrabold leading-[1.04] tracking-[-0.025em] text-[#f3f2f2] sm:text-[56px] lg:text-[78px]">
-          <span className="animate-fade-up block [animation-delay:40ms]">
-            We build your product.
-          </span>
-          <span className="animate-fade-up block [animation-delay:140ms]">
-            Idea to launch.
-          </span>
-          <span className="animate-fade-up block text-highlight [animation-delay:240ms]">
-            Nothing off a shelf.
-          </span>
-        </h1>
-        <p className="animate-fade-up mt-7 max-w-[52ch] text-lg leading-relaxed text-[rgba(243,242,242,.78)] [animation-delay:360ms]">
-          Laprocox designs and engineers custom websites, mobile apps, CRMs
-          and SaaS platforms end to end. One team, from the first whiteboard
-          to the release that ships.
+        <p className="animate-fade-up mt-0 max-w-[52ch] text-lg leading-relaxed text-[rgba(243,242,242,.78)] [animation-delay:360ms]">
+          Laprocox designs and engineers custom websites, mobile apps, CRMs and
+          SaaS platforms end to end. One team, from the first whiteboard to the
+          release that ships.
         </p>
         <div className="animate-fade-up mt-[34px] flex flex-wrap gap-3 [animation-delay:460ms]">
           <a
@@ -65,13 +65,18 @@ export default function Hero() {
               className="animate-fade-up whitespace-pre"
               style={{ animationDelay: `${620 + i * 130}ms` }}
             >
-              <span className="text-highlight">✓</span> {step.label.padEnd(15, " ")}{" "}
-              <span className="text-[rgba(243,242,242,.45)]">{step.detail}</span>
+              <span className="text-highlight">✓</span>{" "}
+              {step.label.padEnd(15, " ")}{" "}
+              <span className="text-[rgba(243,242,242,.45)]">
+                {step.detail}
+              </span>
             </div>
           ))}
           <div
             className="animate-fade-up whitespace-pre"
-            style={{ animationDelay: `${620 + deploySteps.length * 130 + 100}ms` }}
+            style={{
+              animationDelay: `${620 + deploySteps.length * 130 + 100}ms`,
+            }}
           >
             <span className="text-[rgba(243,242,242,.4)]">→</span> shipped in{" "}
             <span className="text-[#f3f2f2]">54 days</span>
